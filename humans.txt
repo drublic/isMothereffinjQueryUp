@@ -1,0 +1,20 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Created by Hans Christian Reinl
+  Site: drublic.de
+  Twitter: @drublic
+  Location: Freiburg / Germany // 47.994828°, 7.849881°
+
+
+/* THANKS */
+  The HTML5 Boilerplate Team - h5bp.com
+  The jQuery Community - jQuery.com
+
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery
+  Software: Espresso
