@@ -106,10 +106,14 @@
   } (jQuery);
 </script>
 
-<!-- Google Analytics -->
+<!-- Piwik --> 
+<script src="http://drublic.de/piwik/piwik.js"></script>
 <script>
-  var _gaq=[['_setAccount','UA-27103791-1'],['_trackPageview'],['_trackPageLoadTime']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
+try {
+var pkBaseURL = 'http://drublic.de/piwik/',
+    piwikTracker = Piwik.getTracker(pkBaseURL + 'piwik.php', 2);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
 </script>
+<noscript><img src="http://drublic.de/piwik/piwik.php?idsite=2" alt=""></noscript>
