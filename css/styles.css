@@ -211,9 +211,17 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
 
   section {
     display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
   }
   section p {
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
     margin: 0;
   }
   section p:first-child {
@@ -234,11 +242,23 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
   
   #libs {
     display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
   }
   
   section {
     display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    -o-box-flex: 1;
+    box-flex: 1;
     margin-right: 10px;
   }
 
