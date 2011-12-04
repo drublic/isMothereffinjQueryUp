@@ -7,36 +7,39 @@
 
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="css/styles.css">
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <header>
-  <h1><span>Is the latest</span> jQuery-version <span>already up?</span></h1>
+  <h1><span>Is the mothereffin' latest</span> jQuery-version <span>already up?</span></h1>
   <p>Check out if the latest version* of jQuery is already up on the major <abbr title="Content Delivery Network">CDN</abbr>s.</p>
-  <p class="small">*) latest version refers to the <a href="http://code.jquery.com/jquery-latest.js">jQuery-latest.js</a> file on the jQuery CDN as this might be the first file to be updated.</p>
   <p class="refresh"><a href="#" class="button">Refresh</a></p>
 </header>
-<h2>The current version is <span>1.6.0</span></h2>
+<h2>The current version is <span>1.7.0</span></h2>
 
-<section class="jquery">
-  <p class="full button">jQuery CDN - Full</p>
-  <p class="min button">jQuery CDN - Minimized</p>
-</section>
-
-<section class="google">
-  <p class="full button">Google CDN - Full</p>
-  <p class="min button">Google CDN - Minimized</p>
-</section>
-
-<section class="ms">
-  <p class="full button">Microsoft CDN - Full</p>
-  <p class="min button">Microsoft CDN - Minimized</p>
-</section>
+<div id="libs">
+  <section class="jquery">
+    <p class="full button">jQuery CDN - Full</p>
+    <p class="min button">jQuery CDN - Minimized</p>
+  </section>
+  
+  <section class="google">
+    <p class="full button">Google CDN - Full</p>
+    <p class="min button">Google CDN - Minimized</p>
+  </section>
+  
+  <section class="ms">
+    <p class="full button">Microsoft CDN - Full</p>
+    <p class="min button">Microsoft CDN - Minimized</p>
+  </section>
+</div>
 
 
 <footer>
-  <p> This page is created by <a href="http://drublic.de/blog" title="A Wedesign Blog - HTML5, CSS3 and JavaScript - Cutting Edge techlogoies">drublic</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)</a>.</p>
+  <p>*) latest version refers to the <a href="http://code.jquery.com/jquery-latest.js">jQuery-latest.js</a> file on the jQuery CDN as this might be the first file to be updated.</p>
+  
+  <p>This page is created by <a href="http://drublic.de/blog" title="A Wedesign Blog - HTML5, CSS3 and JavaScript - Cutting Edge techlogoies">drublic</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)</a>.</p>
   <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="img/license.png" alt="Creative Commons License" width="80" height="15"></a></p>
   
   <p class="social">
@@ -44,6 +47,11 @@
     <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-related="drublic:Creator of this app">Tweet</a>
   </p>
 </footer>
+
+
+<div id="message">
+  <p>Sorry dude, I cannot get a proper connection to the net. There's something wrong.</p>
+</div>
 
 
 <script src="https://apis.google.com/js/plusone.js"></script>
@@ -87,7 +95,7 @@
     // and will turn "available" when the request has finished
     setTimeout( function() {
       $('section p:not(.yep)').addClass('nope');
-    }, 1000);
+    }, 3000);
     
     // Run tests again
     $('.refresh a').click( function() {
