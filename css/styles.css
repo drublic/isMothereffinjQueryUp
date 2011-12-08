@@ -43,10 +43,10 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
     font-size: 2.5em;
     line-height: .8;
     letter-spacing: -.05em;
-    text-shadow: 0 1px 0 #769dc4,
-                 0 2px 0 #86add4,
-                 0 3px 0 #86add4,
-                 0 4px 0 #86add4;
+    text-shadow: 0 1px 0 #6a95bf,
+                 0 2px 0 #8eaece,
+                 0 3px 0 #8eaece,
+                 0 4px 0 #8eaece;
   }
   h1 span { font-size: .7em; }
   
@@ -57,9 +57,9 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
   
   h2 {
     font-size: 1.5em;
-    text-shadow: 0 1px 0 #769dc4,
-                 0 2px 0 #86add4,
-                 0 3px 0 #86add4;
+    text-shadow: 0 1px 0 #6a95bf,
+                 0 2px 0 #8eaece,
+                 0 3px 0 #8eaece;
   }
   
   /* Main */
