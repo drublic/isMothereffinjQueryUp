@@ -66,8 +66,9 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
   section {
     margin: 3px 0;
   }
-  section p {
+  section a {
     position: relative;
+    display: block;
     margin: 0 5%;
   }
   
@@ -142,10 +143,10 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
   
   .button::-moz-focus-inner { padding: 0; border: 0; }
   
-  section p:first-child {
+  section a:first-child {
     border-radius: .2em .2em 0 0;
   }
-  section p + .button {
+  section a + .button {
     margin-top: -1px;
     border-radius: 0 0 .2em .2em;
   }
@@ -216,7 +217,7 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
     display: -o-box;
     display: box;
   }
-  section p {
+  section a {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -ms-box-flex: 1;
@@ -224,10 +225,10 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
     box-flex: 1;
     margin: 0;
   }
-  section p:first-child {
+  section a:first-child {
     border-radius: .2em 0 0 .2em;
   }
-  section p + .button {
+  section a + .button {
     margin: 0 0 0 -1px;
     border-radius: 0 .2em .2em 0 ;
   }

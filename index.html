@@ -20,18 +20,18 @@
 
 <div id="libs">
   <section class="jquery">
-    <p class="full button" data-url="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.js">jQuery CDN - Full</p>
-    <p class="min button" data-url="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.min.js">jQuery CDN - Minimized</p>
+    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.js" class="full button">jQuery CDN - Full</a>
+    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.min.js" class="min button">jQuery CDN - Minimized</a>
   </section>
 
   <section class="google">
-    <p class="full button" data-url="http://code.jquery.com/jquery-%current%.js">Google CDN - Full</p>
-    <p class="min button" data-url="http://code.jquery.com/jquery-%current%.min.js">Google CDN - Minimized</p>
+    <a href="http://code.jquery.com/jquery-%current%.min.js" class="full button">Google CDN - Full</a>
+    <a href="http://code.jquery.com/jquery-%current%.min.js" class="min button">Google CDN - Minimized</a>
   </section>
 
   <section class="ms">
-    <p class="full button" data-url="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.js">Microsoft CDN - Full</p>
-    <p class="min button" data-url="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.min.js">Microsoft CDN - Minimized</p>
+    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.js" class="full button">Microsoft CDN - Full</a>
+    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.min.js" class="min button">Microsoft CDN - Minimized</a>
   </section>
 </div>
 
@@ -109,10 +109,12 @@
 
     // Test the given CDNs
     function runTests() {
-      $('#libs p').each(function() {
-        $(this).loadTest(
-          this.getAttribute('data-url').replace(/%current%/g, current)
-        );
+      $('#libs a').each(function() {
+        $(this)
+          .attr('href', this.getAttribute('href').replace(/%current%/g, current) )
+          .loadTest(
+            this.getAttribute('href')
+          );
       });
     }
 
@@ -120,7 +122,7 @@
 
     // Run tests again
     $('.refresh a').click( function() {
-      $('section p').removeClass('yep nope');
+      $('section a').removeClass('yep nope');
       runTests();
     });
 
