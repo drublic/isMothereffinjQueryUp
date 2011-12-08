@@ -20,18 +20,18 @@
 
 <div id="libs">
   <section class="jquery">
-    <p class="full button">jQuery CDN - Full</p>
-    <p class="min button">jQuery CDN - Minimized</p>
+    <p class="full button" data-url="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.js">jQuery CDN - Full</p>
+    <p class="min button" data-url="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.min.js">jQuery CDN - Minimized</p>
   </section>
 
   <section class="google">
-    <p class="full button">Google CDN - Full</p>
-    <p class="min button">Google CDN - Minimized</p>
+    <p class="full button" data-url="http://code.jquery.com/jquery-%current%.js">Google CDN - Full</p>
+    <p class="min button" data-url="http://code.jquery.com/jquery-%current%.min.js">Google CDN - Minimized</p>
   </section>
 
   <section class="ms">
-    <p class="full button">Microsoft CDN - Full</p>
-    <p class="min button">Microsoft CDN - Minimized</p>
+    <p class="full button" data-url="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.js">Microsoft CDN - Full</p>
+    <p class="min button" data-url="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.min.js">Microsoft CDN - Minimized</p>
   </section>
 </div>
 
@@ -109,14 +109,13 @@
 
     // Test the given CDNs
     function runTests() {
-      var $libs = $('#libs');
-      $('.google .full', $libs).loadTest('http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.js');
-      $('.google .min', $libs).loadTest('http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.min.js');
-      $('.jquery .full', $libs).loadTest('http://code.jquery.com/jquery-' + current + '.js');
-      $('.jquery .min', $libs).loadTest('http://code.jquery.com/jquery-' + current + '.min.js');
-      $('.ms .full', $libs).loadTest('http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.js');
-      $('.ms .min', $libs).loadTest('http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.min.js');
+      $('#libs p').each(function() {
+        $(this).loadTest(
+          this.getAttribute('data-url').replace(/%current%/g, current)
+        );
+      });
     }
+
     runTests();
 
     // Run tests again
