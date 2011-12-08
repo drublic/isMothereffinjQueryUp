@@ -16,19 +16,19 @@
   <p>Check out if the latest version* of jQuery is already up on the major <abbr title="Content Delivery Network">CDN</abbr>s.</p>
   <p class="refresh"><a href="#" class="button">Refresh</a></p>
 </header>
-<h2>The current version is <span>1.7.0</span></h2>
+<h2>The current version is <span>1.7.1</span></h2>
 
 <div id="libs">
   <section class="jquery">
     <p class="full button">jQuery CDN - Full</p>
     <p class="min button">jQuery CDN - Minimized</p>
   </section>
-  
+
   <section class="google">
     <p class="full button">Google CDN - Full</p>
     <p class="min button">Google CDN - Minimized</p>
   </section>
-  
+
   <section class="ms">
     <p class="full button">Microsoft CDN - Full</p>
     <p class="min button">Microsoft CDN - Minimized</p>
@@ -38,10 +38,10 @@
 
 <footer>
   <p>*) latest version refers to the <a href="http://code.jquery.com/jquery-latest.js">jQuery-latest.js</a> file on the jQuery CDN as this might be the first file to be updated.</p>
-  
+
   <p>This page is created by <a href="http://drublic.de/blog" title="A Wedesign Blog - HTML5, CSS3 and JavaScript - Cutting Edge techlogoies">drublic</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)</a>.</p>
   <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="img/license.png" alt="Creative Commons License" width="80" height="15"></a></p>
-  
+
   <p class="social">
     <g:plusone size="medium"></g:plusone>
     <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-related="drublic:Creator of this app">Tweet</a>
@@ -61,52 +61,74 @@
 <script>
   // $-save with IIFE
   +function($) {
-    
+
     // Save current version
     var current = $.fn.jquery;
-    
+
     // Update the heading with current version
     $('h2 span').text(current);
 
-    // tests if a script is available
-    // @param name - identifier for sections
-    // @param src - source of script
-    function test(name, src) {
-      $.getScript(src, function(xhr, status) {
-        if (status == 'success') {
-          $('.' + name.replace(/-/, ' .') ).addClass('yep');
-        }
-      });
-    }
+    // Test if the script can be loaded
+    // http://jsfiddle.net/mathias/c6RPm/
+    $.fn.loadTest = function(url) {
+      var $this = this,
+          timeout;
+
+      function success() {
+        clearTimeout(timeout);
+        $this.addClass('yep');
+      }
+
+      function error() {
+        clearTimeout(timeout);
+        $this.addClass('nope');
+      }
+
+      function loadScript(dataType) {
+        // Load scripts asynchronously
+        // Don't use $.getScript since it disables caching
+        $.ajax({
+          'url': url,
+          'dataType': dataType,
+          'cache': true,
+          'success': success,
+          'error': error,
+          'complete': function(xhr) {
+            (xhr && xhr.status ? success : error)();
+          }
+        });
+      }
+
+      loadScript('script');
+
+      timeout = setTimeout(function() {
+        loadScript('text');
+      }, 3000);
+
+    };
 
     // Test the given CDNs
     function runTests() {
-      test('google-full', 'http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.js');
-      test('google-min', 'http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.min.js');
-      test('jquery-full', 'http://code.jquery.com/jquery-' + current + '.js' );
-      test('jquery-min', 'http://code.jquery.com/jquery-' + current + '.min.js' );
-      test('ms-full', 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.js' );
-      test('ms-min', 'http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.min.js' );
+      var $libs = $('#libs');
+      $('.google .full', $libs).loadTest('http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.js');
+      $('.google .min', $libs).loadTest('http://ajax.googleapis.com/ajax/libs/jquery/' + current + '/jquery.min.js');
+      $('.jquery .full', $libs).loadTest('http://code.jquery.com/jquery-' + current + '.js');
+      $('.jquery .min', $libs).loadTest('http://code.jquery.com/jquery-' + current + '.min.js');
+      $('.ms .full', $libs).loadTest('http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.js');
+      $('.ms .min', $libs).loadTest('http://ajax.aspnetcdn.com/ajax/jQuery/jquery-' + current + '.min.js');
     }
     runTests();
-    
-    // If no answer after a second it's not there
-    // If the network is just slow, the file will be displayed as "not available"
-    // and will turn "available" when the request has finished
-    setTimeout( function() {
-      $('section p:not(.yep)').addClass('nope');
-    }, 3000);
-    
+
     // Run tests again
     $('.refresh a').click( function() {
       $('section p').removeClass('yep nope');
       runTests();
     });
 
-  } (jQuery);
+  }(jQuery);
 </script>
 
-<!-- Piwik --> 
+<!-- Piwik -->
 <script src="http://drublic.de/piwik/piwik.js"></script>
 <script>
 try {
