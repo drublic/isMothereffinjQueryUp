@@ -80,12 +80,12 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
   }
   
   section .yep:before {
-    content: '⬆'; background: none;
+    content: '\2B06'; background: none;
     color: #6cc421;
   }
   
   section .nope:before {
-    content: '⬇'; background: none;
+    content: '\2B07'; background: none;
     color: #c00;
   }
 
