@@ -20,6 +20,10 @@ abbr[title] { border-bottom: 1px dotted; }
 b, strong { font-weight: bold; }
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 
+.ribbon {
+	position: absolute; top: 0; right: 0; border: 0;
+}
+
 
 /* Media Queries for Responsive Design - 'mobile first' */
 @media only screen and (min-width: 320px) {
