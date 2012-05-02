@@ -1,142 +1,146 @@
-<!doctype html public "<!doctype html">
-<meta charset="utf-8">
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	
+	<title>Is Mothereffin' jQuery up? - Check if the latest jQuery-version is already available on CDNs</title>
+	<meta name="description" content="Check out if the latest version* of jQuery is already up on the major CDNs">
+	<meta name="author" content="Hans Christian Reinl">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	
+	<link rel="stylesheet" href="css/styles.css">
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<title>Is Mothereffin' jQuery up? - Check if the latest jQuery-version is already available on CDNs</title>
-<meta name="description" content="Check out if the latest version* of jQuery is already up on the major CDNs">
-<meta name="author" content="Hans Christian Reinl">
-
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<link rel="stylesheet" href="css/styles.css">
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<header>
-  <h1><span>Is the mothereffin' latest</span> jQuery-version <span>already up?</span></h1>
-  <p>Check out if the latest version* of jQuery is already up on the major <abbr title="Content Delivery Network">CDN</abbr>s.</p>
-  <p class="refresh"><a href="#" class="button">Refresh</a></p>
-</header>
-<h2>The current version is <span>1.7.1</span></h2>
-
-<div id="libs">
-  <section class="jquery">
-    <a href="http://code.jquery.com/jquery-%current%.min.js" class="full button">jQuery CDN - Full</a>
-    <a href="http://code.jquery.com/jquery-%current%.min.js" class="min button">jQuery CDN - Minimized</a>
-  </section>
-
-  <section class="google">
-    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.js" class="full button">Google CDN - Full</a>
-    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.min.js" class="min button">Google CDN - Minimized</a>
-  </section>
-
-  <section class="ms">
-    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.js" class="full button">Microsoft CDN - Full</a>
-    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.min.js" class="min button">Microsoft CDN - Minimized</a>
-  </section>
-</div>
-
-
-<footer>
-  <p>* latest version refers to the <a href="http://code.jquery.com/jquery-latest.js">jQuery-latest.js</a> file on the jQuery CDN as this might be the first file to be updated.</p>
-
-  <p>This page is created by <a href="http://drublic.de/blog" title="A Wedesign Blog - HTML5, CSS3 and JavaScript - Cutting Edge techlogoies">drublic</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)</a>.</p>
-  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="img/license.png" alt="Creative Commons License" width="80" height="15"></a></p>
-
-  <p class="social">
-    <g:plusone size="medium"></g:plusone>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Is Mothereffin jQuery up? - Check out if the latest version of jQuery is already up on the major CDNs." data-related="drublic:Creator of this app" data-lang="en" data-url="http://ismothereffinjqueryup.drublic.de/">Tweet</a>
-  </p>
-</footer>
-
-
-<div id="message">
-  <p>Sorry dude, I cannot get a proper connection to the net. There's something wrong.</p>
-</div>
-
-
-<script src="https://apis.google.com/js/plusone.js"></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
-<script>
-  // $-save with IIFE
-  +function($) {
-
-    // Save current version
-    var current = $.fn.jquery;
-
-    // Update the heading with current version
-    $('h2 span').text(current);
-
-    // Test if the script can be loaded
-    // http://jsfiddle.net/mathias/c6RPm/
-    $.fn.loadTest = function(url) {
-      var $this = this,
-          timeout;
-
-      function success() {
-        clearTimeout(timeout);
-        $this.addClass('yep');
-      }
-
-      function error() {
-        clearTimeout(timeout);
-        $this.addClass('nope');
-      }
-
-      function loadScript(dataType) {
-        // Load scripts asynchronously
-        // Don't use $.getScript since it disables caching
-        $.ajax({
-          'url': url,
-          'dataType': dataType,
-          'cache': true,
-          'success': success,
-          'error': error,
-          'complete': function(xhr) {
-            (xhr && xhr.status ? success : error)();
-          }
-        });
-      }
-
-      loadScript('script');
-
-      timeout = setTimeout(function() {
-        loadScript('text');
-      }, 3000);
-
-    };
-
-    // Test the given CDNs
-    function runTests() {
-      $('#libs a').each(function() {
-        $(this)
-          .attr('href', this.getAttribute('href').replace(/%current%/g, current) )
-          .loadTest(
-            this.getAttribute('href')
-          );
-      });
-    }
-
-    runTests();
-
-    // Run tests again
-    $('.refresh a').click( function() {
-      $('section a').removeClass('yep nope');
-      runTests();
-    });
-
-  }(jQuery);
-</script>
-
-<!-- Piwik -->
-<script src="http://drublic.de/piwik/piwik.js"></script>
-<script>
-try {
-  var pkBaseURL = 'http://drublic.de/piwik/',
-    piwikTracker = Piwik.getTracker(pkBaseURL + 'piwik.php', 2);
-  piwikTracker.trackPageView();
-  piwikTracker.enableLinkTracking();
-} catch( err ) {}
-</script>
-<noscript><img src="http://drublic.de/piwik/piwik.php?idsite=2" alt=""></noscript>
+<body>
+	
+	<header>
+	  <h1><span>Is the mothereffin' latest</span> jQuery-version <span>already up?</span></h1>
+	  <p>Check out if the latest version* of jQuery is already up on the major <abbr title="Content Delivery Network">CDN</abbr>s.</p>
+	  <p class="refresh"><a href="#" class="button">Refresh</a></p>
+	</header>
+	<h2>The current version is <span>1.7.1</span></h2>
+	
+	<div id="libs">
+	  <section class="jquery">
+	    <a href="http://code.jquery.com/jquery-%current%.min.js" class="full button">jQuery CDN - Full</a>
+	    <a href="http://code.jquery.com/jquery-%current%.min.js" class="min button">jQuery CDN - Minimized</a>
+	  </section>
+	
+	  <section class="google">
+	    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.js" class="full button">Google CDN - Full</a>
+	    <a href="http://ajax.googleapis.com/ajax/libs/jquery/%current%/jquery.min.js" class="min button">Google CDN - Minimized</a>
+	  </section>
+	
+	  <section class="ms">
+	    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.js" class="full button">Microsoft CDN - Full</a>
+	    <a href="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-%current%.min.js" class="min button">Microsoft CDN - Minimized</a>
+	  </section>
+	</div>
+	
+	
+	<footer>
+	  <p>* latest version refers to the <a href="http://code.jquery.com/jquery-latest.js">jQuery-latest.js</a> file on the jQuery CDN as this might be the first file to be updated.</p>
+	
+	  <p>This page is created by <a href="http://drublic.de/blog" title="A Wedesign Blog - HTML5, CSS3 and JavaScript - Cutting Edge techlogoies">drublic</a> and is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License (CC BY-SA 3.0)</a>.</p>
+	  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="img/license.png" alt="Creative Commons License" width="80" height="15"></a></p>
+	
+	  <p class="social">
+	    <g:plusone size="medium"></g:plusone>
+	    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Is Mothereffin jQuery up? - Check out if the latest version of jQuery is already up on the major CDNs." data-related="drublic:Creator of this app" data-lang="en" data-url="http://ismothereffinjqueryup.drublic.de/">Tweet</a>
+	  </p>
+	</footer>
+	
+	
+	<div id="message">
+	  <p>Sorry dude, I cannot get a proper connection to the net. There's something wrong.</p>
+	</div>
+	
+	
+	<script src="https://apis.google.com/js/plusone.js"></script>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	
+	
+	<script>
+	  // $-save with IIFE
+	  +function($) {
+	
+	    // Save current version
+	    var current = $.fn.jquery;
+	
+	    // Update the heading with current version
+	    $('h2 span').text(current);
+	
+	    // Test if the script can be loaded
+	    // http://jsfiddle.net/mathias/c6RPm/
+	    $.fn.loadTest = function(url) {
+	      var $this = this,
+	          timeout;
+	
+	      function success() {
+	        clearTimeout(timeout);
+	        $this.addClass('yep');
+	      }
+	
+	      function error() {
+	        clearTimeout(timeout);
+	        $this.addClass('nope');
+	      }
+	
+	      function loadScript(dataType) {
+	        // Load scripts asynchronously
+	        // Don't use $.getScript since it disables caching
+	        $.ajax({
+	          'url': url,
+	          'dataType': dataType,
+	          'cache': true,
+	          'success': success,
+	          'error': error,
+	          'complete': function(xhr) {
+	            (xhr && xhr.status ? success : error)();
+	          }
+	        });
+	      }
+	
+	      loadScript('script');
+	
+	      timeout = setTimeout(function() {
+	        loadScript('text');
+	      }, 3000);
+	
+	    };
+	
+	    // Test the given CDNs
+	    function runTests() {
+	      $('#libs a').each(function() {
+	        $(this)
+	          .attr('href', this.getAttribute('href').replace(/%current%/g, current) )
+	          .loadTest(
+	            this.getAttribute('href')
+	          );
+	      });
+	    }
+	
+	    runTests();
+	
+	    // Run tests again
+	    $('.refresh a').click( function() {
+	      $('section a').removeClass('yep nope');
+	      runTests();
+	    });
+	
+	  }(jQuery);
+	</script>
+	
+	<!-- Piwik -->
+	<script src="http://drublic.de/piwik/piwik.js"></script>
+	<script>
+	try {
+	  var pkBaseURL = 'http://drublic.de/piwik/',
+	    piwikTracker = Piwik.getTracker(pkBaseURL + 'piwik.php', 2);
+	  piwikTracker.trackPageView();
+	  piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+	</script>
+	<noscript><img src="http://drublic.de/piwik/piwik.php?idsite=2" alt=""></noscript>
