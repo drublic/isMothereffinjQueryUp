@@ -1,6 +1,6 @@
 # Is Mothereffin' jQuery Up?
 
-__Is Mothereffin jQuery Up?__ checks if the latest version of jQuery is already available at the major Content Delivery Networks (CND).
+__Is Mothereffin jQuery Up?__ checks if the latest version of jQuery is already available at the major Content Delivery Networks (CDN).
 
 [ismothereffinjqueryup.drublic.de](http://ismothereffinjqueryup.drublic.de/) is the website.
 
